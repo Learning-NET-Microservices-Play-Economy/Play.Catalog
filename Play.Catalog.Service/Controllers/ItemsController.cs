@@ -23,9 +23,15 @@ namespace Play.Catalog.Service.Controllers
 
         // GET api/items/5
         [HttpGet("{id}")]
-        public ItemDto Get(Guid id)
+        public ActionResult<ItemDto> Get(Guid id)
         {
             var result = _items.SingleOrDefault(q => q.Id == id);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
             return result;
         }
 
