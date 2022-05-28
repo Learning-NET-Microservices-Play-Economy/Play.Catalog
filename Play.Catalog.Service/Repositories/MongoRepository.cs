@@ -3,30 +3,29 @@ using Play.Catalog.Service.Entities;
 
 namespace Play.Catalog.Service.Repositories
 {
-    public class ItemsRepository : IItemsRepository
+    public class MongoRepository<T> : IRepository<T> where T : IEntity
     {
-        private const string _collectionName = "items";
-        private readonly IMongoCollection<Item> _dbCollection;
-        private readonly FilterDefinitionBuilder<Item> _filterBuilder = Builders<Item>.Filter;
+        private readonly IMongoCollection<T> _dbCollection;
+        private readonly FilterDefinitionBuilder<T> _filterBuilder = Builders<T>.Filter;
 
-        public ItemsRepository(IMongoDatabase database)
+        public MongoRepository(IMongoDatabase database, string collectionName)
         {
-            _dbCollection = database.GetCollection<Item>(_collectionName);
+            _dbCollection = database.GetCollection<T>(collectionName);
         }
 
-        public async Task<IReadOnlyCollection<Item>> GetAsync()
+        public async Task<IReadOnlyCollection<T>> GetAsync()
         {
             var result = await _dbCollection.Find(_filterBuilder.Empty).ToListAsync();
             return result;
         }
 
-        public async Task<Item> GetAsync(Guid id)
+        public async Task<T> GetAsync(Guid id)
         {
             var filter = _filterBuilder.Eq(e => e.Id, id);
             return await _dbCollection.Find(filter).FirstOrDefaultAsync();
         }
 
-        public async Task CreateAsync(Item entity)
+        public async Task CreateAsync(T entity)
         {
             if (entity == null)
             {
@@ -36,7 +35,7 @@ namespace Play.Catalog.Service.Repositories
             await _dbCollection.InsertOneAsync(entity);
         }
 
-        public async Task UpdateAsync(Item entity)
+        public async Task UpdateAsync(T entity)
         {
             if (entity == null)
             {
