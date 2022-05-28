@@ -1,34 +1,44 @@
-﻿namespace Play.Catalog.Service;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
+
+namespace Play.Catalog.Service;
 
 public class Program
 {
     public static void Main(string[] args)
     {
-    var builder = WebApplication.CreateBuilder(args);
+        var builder = WebApplication.CreateBuilder(args);
 
-    // Add services to the container.
+        // Add services to the container.
+        BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
+        BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String));
 
-    builder.Services.AddControllers();
-    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-    builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
+        builder.Services.AddControllers(options =>
+        {
+            options.SuppressAsyncSuffixInActionNames = false;
+        });
 
-    var app = builder.Build();
+        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
 
-    // Configure the HTTP request pipeline.
-    if (app.Environment.IsDevelopment())
-    {
-        app.UseSwagger();
-        app.UseSwaggerUI();
-    }
+        var app = builder.Build();
 
-    app.UseHttpsRedirection();
+        // Configure the HTTP request pipeline.
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
 
-    app.UseAuthorization();
+        app.UseHttpsRedirection();
 
-    app.MapControllers();
+        app.UseAuthorization();
 
-    app.Run();
+        app.MapControllers();
+
+        app.Run();
     }
 }
 
