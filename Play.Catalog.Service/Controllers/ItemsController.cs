@@ -16,7 +16,12 @@ namespace Play.Catalog.Service.Controllers
         //     new ItemDto(Guid.NewGuid(), "Bronze Sword", "Deals a small amount of damage", 20, DateTimeOffset.UtcNow)
         //  };
 
-        private readonly ItemsRepository _itemsRepository = new();
+        private readonly IItemsRepository _itemsRepository;
+
+        public ItemsController(IItemsRepository itemsRepository)
+        {
+            _itemsRepository = itemsRepository;
+        }
 
         // GET: api/items
         [HttpGet]
