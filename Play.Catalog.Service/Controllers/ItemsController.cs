@@ -25,11 +25,11 @@ namespace Mozart.Play.Catalog.Service.Controllers
 
         // GET: api/items
         [HttpGet]
-        public async Task<IEnumerable<ItemDto>> GetAsync()
+        public async Task<ActionResult<IEnumerable<ItemDto>>> GetAsync()
         {
             var result = (await _itemsRepository.GetManyAsync())
                         .Select(q => q.AsDto());
-            return result;
+            return Ok(result);
         }
 
         // GET api/items/5
