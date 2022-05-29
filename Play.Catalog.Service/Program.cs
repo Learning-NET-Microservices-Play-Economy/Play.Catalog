@@ -1,50 +1,49 @@
 ﻿
-using MongoDB.Driver;
-using Play.Catalog.Service.Entities;
-using Play.Catalog.Service.Repositories;
-using Play.Catalog.Service.Settings;
+using Mozart.Play.Catalog.Service.Entities;
+using Mozart.Play.Common.MongoDb;
+using Mozart.Play.Common.Settings;
 
-namespace Play.Catalog.Service;
-
-public class Program
+namespace Mozart.Play.Catalog.Service
 {
-    private static ServiceSettings serviceSettings;
-
-    public static void Main(string[] args)
+    public class Program
     {
-        var builder = WebApplication.CreateBuilder(args);
+        private static ServiceSettings serviceSettings;
 
-        // Add services to the container.
-        serviceSettings = builder.Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
-
-        builder.Services.AddMongo();
-        builder.Services.AddMongoRepository<Item>("items");
-
-        builder.Services.AddControllers(options =>
+        public static void Main(string[] args)
         {
-            options.SuppressAsyncSuffixInActionNames = false;
-        });
+            var builder = WebApplication.CreateBuilder(args);
 
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+            // Add services to the container.
+            serviceSettings = builder.Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
 
-        var app = builder.Build();
+            builder.Services.AddMongo();
+            builder.Services.AddMongoRepository<Item>("items");
 
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
+            builder.Services.AddControllers(options =>
+            {
+                options.SuppressAsyncSuffixInActionNames = false;
+            });
+
+            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
+            var app = builder.Build();
+
+            // Configure the HTTP request pipeline.
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
+
+            app.UseHttpsRedirection();
+
+            app.UseAuthorization();
+
+            app.MapControllers();
+
+            app.Run();
         }
-
-        app.UseHttpsRedirection();
-
-        app.UseAuthorization();
-
-        app.MapControllers();
-
-        app.Run();
     }
 }
-

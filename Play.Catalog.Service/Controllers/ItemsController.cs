@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Play.Catalog.Service.Dtos;
-using Play.Catalog.Service.Entities;
-using Play.Catalog.Service.Repositories;
+using Mozart.Play.Catalog.Service.Dtos;
+using Mozart.Play.Catalog.Service.Entities;
+using Mozart.Play.Common;
 
-namespace Play.Catalog.Service.Controllers
+namespace Mozart.Play.Catalog.Service.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -27,7 +27,7 @@ namespace Play.Catalog.Service.Controllers
         [HttpGet]
         public async Task<IEnumerable<ItemDto>> GetAsync()
         {
-            var result = (await _itemsRepository.GetAsync())
+            var result = (await _itemsRepository.GetManyAsync())
                         .Select(q => q.AsDto());
             return result;
         }

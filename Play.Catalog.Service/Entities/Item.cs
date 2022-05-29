@@ -1,4 +1,6 @@
-﻿namespace Play.Catalog.Service.Entities
+﻿using Mozart.Play.Common;
+
+namespace Mozart.Play.Catalog.Service.Entities
 {
     public class Item : IEntity
     {

@@ -4,20 +4,22 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Mozart.Play.Catalog.Service</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Play.Catalog.Service' " />
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
-    <PackageReference Include="MongoDB.Driver" Version="2.15.1" />
+    <PackageReference Include="Mozart.Play.Common" Version="1.0.1" />
   </ItemGroup>
   
   <ItemGroup>
     <None Remove="Entities\" />
     <None Remove="MongoDB.Driver" />
-    <None Remove="Repositories\" />
+    <None Remove="Play.Common" />
+    <None Remove="Mozart.Play.Common" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
-    <Folder Include="Repositories\" />
   </ItemGroup>
 </Project>

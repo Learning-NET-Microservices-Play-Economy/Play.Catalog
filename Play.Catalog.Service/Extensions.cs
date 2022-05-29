@@ -1,7 +1,7 @@
-﻿using Play.Catalog.Service.Dtos;
-using Play.Catalog.Service.Entities;
+﻿using Mozart.Play.Catalog.Service.Dtos;
+using Mozart.Play.Catalog.Service.Entities;
 
-namespace Play.Catalog.Service
+namespace Mozart.Play.Catalog.Service
 {
     public static class Extensions
     {
