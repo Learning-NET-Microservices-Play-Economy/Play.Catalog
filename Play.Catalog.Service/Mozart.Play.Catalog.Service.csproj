@@ -22,4 +22,9 @@
   <ItemGroup>
     <Folder Include="Entities\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Play.Catalog.Contracts\Mozart.Play.Catalog.Contracts.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

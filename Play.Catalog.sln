@@ -5,6 +5,8 @@ VisualStudioVersion = 25.0.1703.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mozart.Play.Catalog.Service", "Play.Catalog.Service\Mozart.Play.Catalog.Service.csproj", "{16582E77-EFFA-4250-95F3-8CA45480AE0B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mozart.Play.Catalog.Contracts", "Play.Catalog.Contracts\Mozart.Play.Catalog.Contracts.csproj", "{38E7D344-04BF-4DDA-85F9-5FD9F37D37A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{16582E77-EFFA-4250-95F3-8CA45480AE0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16582E77-EFFA-4250-95F3-8CA45480AE0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16582E77-EFFA-4250-95F3-8CA45480AE0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38E7D344-04BF-4DDA-85F9-5FD9F37D37A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38E7D344-04BF-4DDA-85F9-5FD9F37D37A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38E7D344-04BF-4DDA-85F9-5FD9F37D37A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38E7D344-04BF-4DDA-85F9-5FD9F37D37A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
