@@ -1,5 +1,8 @@
 ﻿
+using MassTransit;
+using MassTransit.Definition;
 using Mozart.Play.Catalog.Service.Entities;
+using Mozart.Play.Catalog.Service.Settings;
 using Mozart.Play.Common.MongoDb;
 using Mozart.Play.Common.Settings;
 
@@ -12,21 +15,34 @@ namespace Mozart.Play.Catalog.Service
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var services = builder.Services;
 
             // Add services to the container.
             serviceSettings = builder.Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
 
-            builder.Services.AddMongo();
-            builder.Services.AddMongoRepository<Item>("items");
+            services.AddMongo();
+            services.AddMongoRepository<Item>("items");
 
-            builder.Services.AddControllers(options =>
+            services.AddMassTransit(x =>
+            {
+                x.UsingRabbitMq((context, configurator) =>
+                {
+                    var rabbitMQSettings = builder.Configuration.GetSection(nameof(RabbitMQSettings)).Get<RabbitMQSettings>();
+                    configurator.Host(rabbitMQSettings.Host);
+                    configurator.ConfigureEndpoints(context, new KebabCaseEndpointNameFormatter(serviceSettings.ServiceName, false));
+                });
+            });
+
+            services.AddMassTransitHostedService();
+
+            services.AddControllers(options =>
             {
                 options.SuppressAsyncSuffixInActionNames = false;
             });
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
 
             var app = builder.Build();
 

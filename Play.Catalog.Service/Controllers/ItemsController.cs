@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MassTransit;
+using Microsoft.AspNetCore.Mvc;
+using Mozart.Play.Catalog.Contracts;
 using Mozart.Play.Catalog.Service.Dtos;
 using Mozart.Play.Catalog.Service.Entities;
 using Mozart.Play.Common;
@@ -17,10 +19,12 @@ namespace Mozart.Play.Catalog.Service.Controllers
         //  };
 
         private readonly IRepository<Item> _itemsRepository;
+        private readonly IPublishEndpoint _publishEndpoint;
 
-        public ItemsController(IRepository<Item> itemsRepository)
+        public ItemsController(IRepository<Item> itemsRepository, IPublishEndpoint publishEndpoint)
         {
             _itemsRepository = itemsRepository;
+            _publishEndpoint = publishEndpoint;
         }
 
         // GET: api/items
@@ -57,7 +61,10 @@ namespace Mozart.Play.Catalog.Service.Controllers
                 Price = body.Price,
                 CreatedDate = DateTimeOffset.UtcNow
             };
+
             await _itemsRepository.CreateAsync(entity);
+
+            await _publishEndpoint.Publish(new CatalogItemCreated(entity.Id, entity.Name, entity.Description));
 
             return CreatedAtAction(nameof(GetAsync), new { Id = entity.Id }, entity);
         }
@@ -79,6 +86,8 @@ namespace Mozart.Play.Catalog.Service.Controllers
 
             await _itemsRepository.UpdateAsync(existing);
 
+            await _publishEndpoint.Publish(new CatalogItemUpdated(existing.Id, existing.Name, existing.Description));
+
             return NoContent();
         }
 
@@ -94,6 +103,8 @@ namespace Mozart.Play.Catalog.Service.Controllers
             }
 
             await _itemsRepository.DeleteAsync(id);
+
+            await _publishEndpoint.Publish(new CatalogItemDeleted(existing.Id));
 
             return NoContent();
         }
