@@ -10,15 +10,17 @@ namespace Mozart.Play.Catalog.Service
 {
     public class Program
     {
+        private const string AllowedOriginSetting = "AllowedOrigin";
         private static ServiceSettings serviceSettings;
 
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
             var services = builder.Services;
+            var configuration = builder.Configuration;
 
             // Add services to the container.
-            serviceSettings = builder.Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
+            serviceSettings = configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
 
             services.AddMongo()
                     .AddMongoRepository<Item>("items")
@@ -40,6 +42,13 @@ namespace Mozart.Play.Catalog.Service
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+
+                app.UseCors(builder =>
+                {
+                    builder.WithOrigins(configuration[AllowedOriginSetting])
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                });
             }
 
             app.UseHttpsRedirection();
