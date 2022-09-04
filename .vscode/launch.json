@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/Play.Catalog.Service/bin/Debug/net6.0/Play.Catalog.Service.dll",
+            "program": "${workspaceFolder}/Play.Catalog.Service/bin/Debug/net6.0/Mozart.Play.Catalog.Service.dll",
             "args": [],
             "cwd": "${workspaceFolder}/Play.Catalog.Service",
             "stopAtEntry": false,

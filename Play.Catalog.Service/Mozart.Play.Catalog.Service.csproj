@@ -4,32 +4,10 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>Mozart.Play.Catalog.Service</RootNamespace>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Play.Catalog.Service' " />
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
-    <PackageReference Include="Mozart.Play.Common" Version="1.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <None Remove="Entities\" />
-    <None Remove="MongoDB.Driver" />
-    <None Remove="Play.Common" />
-    <None Remove="Mozart.Play.Common" />
-    <None Remove="MassTransit.AspNetCore" />
-    <None Remove="MassTransit.RabbitMQ" />
-    <None Remove="Settings\" />
-    <None Remove="MassTransit" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Settings\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Play.Catalog.Contracts\Mozart.Play.Catalog.Contracts.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
-  </ItemGroup>
+
 </Project>

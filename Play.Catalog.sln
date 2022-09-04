@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 25.0.1703.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mozart.Play.Catalog.Service", "Play.Catalog.Service\Mozart.Play.Catalog.Service.csproj", "{16582E77-EFFA-4250-95F3-8CA45480AE0B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mozart.Play.Catalog.Contracts", "Play.Catalog.Contracts\Mozart.Play.Catalog.Contracts.csproj", "{38E7D344-04BF-4DDA-85F9-5FD9F37D37A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mozart.Play.Catalog.Service", "Play.Catalog.Service\Mozart.Play.Catalog.Service.csproj", "{4F450F39-C135-43D0-9C5C-899327DCD315}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,19 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{16582E77-EFFA-4250-95F3-8CA45480AE0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{16582E77-EFFA-4250-95F3-8CA45480AE0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{16582E77-EFFA-4250-95F3-8CA45480AE0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{16582E77-EFFA-4250-95F3-8CA45480AE0B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{38E7D344-04BF-4DDA-85F9-5FD9F37D37A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{38E7D344-04BF-4DDA-85F9-5FD9F37D37A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{38E7D344-04BF-4DDA-85F9-5FD9F37D37A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{38E7D344-04BF-4DDA-85F9-5FD9F37D37A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F450F39-C135-43D0-9C5C-899327DCD315}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F450F39-C135-43D0-9C5C-899327DCD315}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F450F39-C135-43D0-9C5C-899327DCD315}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F450F39-C135-43D0-9C5C-899327DCD315}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {7FC18C26-3768-4B88-A9CD-694EB38785B6}
+		SolutionGuid = {BA6982D7-D195-4303-A929-87ECAE9EEED8}
 	EndGlobalSection
 EndGlobal
