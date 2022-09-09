@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Mozart.Play.Catalog.Service.Dtos;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace Mozart.Play.Catalog.Service.Controllers
 {
     [Route("api/[controller]")]
