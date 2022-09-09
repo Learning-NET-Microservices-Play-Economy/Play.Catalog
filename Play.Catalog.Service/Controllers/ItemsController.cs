@@ -25,9 +25,16 @@ namespace Mozart.Play.Catalog.Service.Controllers
 
         // GET api/<ItemsController>/5
         [HttpGet("{id}")]
-        public ItemDto? Get(Guid id)
+        public ActionResult<ItemDto> Get(Guid id)
         {
-            return _items.SingleOrDefault(q => q.Id == id);
+            var result = _items.SingleOrDefault(q => q.Id == id);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return result;
         }
 
         // POST api/<ItemsController>
